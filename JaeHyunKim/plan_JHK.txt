@@ -7,7 +7,9 @@
 	>> Spring Security
 	>> MySQL
 	>> 페이징 기능 
-	>> 로그인 시간, ip, locale [로그아웃시간?]
+	>> 로그인 시간, ip, locale [로그아웃시간]
+	
+>> Spring Security source 필요
 	
 - 내활동 기록
 	>> 각종 게시판 본인 아이디 검색 후 해당건수 숫자 반환
