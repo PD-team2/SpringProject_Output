@@ -34,3 +34,4 @@
 
 참고 : https://github.com/GGoMak/OnlineVotingWebServer
 https://kouzie.github.io/spring/Spring-Spring-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%84%A4%EB%AC%B8%EC%A1%B0%EC%82%AC-%EC%82%AC%EC%9D%B4%ED%8A%B8/
+https://m.blog.naver.com/zboizz/221718091246
