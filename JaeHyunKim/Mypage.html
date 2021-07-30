@@ -8,14 +8,15 @@
    
 </head>
 <body>
- <header>
-  <h1>Side-On</h1>
-  <nav class="menu">
-    <span><a href="#">MyPage</a></span>
-    <span><a href="#">Menu2</a></span>
-    <span><a href="#">Menu3</a></span>
-  </nav>
-</header>   
+
+<header>
+ <a class="sideOn-logo" href="index.html"><img src="https://raw.githubusercontent.com/PD-team2/SpringProject_Output/main/JaeHyunKim/IMG/Side%20On.png" alt="..." /></a>    
+<nav class="menu">
+<span><a href="index.html">메인</a></span>
+<span><a href="#">로그아웃</a></span> 
+</nav>
+</header> 
+  
 
 <div class="MyPage-Form">
 <div class="MyProfile">
@@ -32,16 +33,19 @@
 </div>
 
 <div class="MyProfile">
-    <div class="Img"><img src="https://raw.githubusercontent.com/PD-team2/SpringProject_Output/main/JaeHyunKim/IMG/Question.png"></div>
-    <div class="title"> 1:1 문의</div> 
+    <div class="Img"><a href="FaQBoard.html">
+    <img src="https://raw.githubusercontent.com/PD-team2/SpringProject_Output/main/JaeHyunKim/IMG/Question.png">
+    </a></div>
+    <div class="title"> 문의하기</div> 
     <div class="expalin"> 관리자에게 문의하실 수 있습니다.</div> 
-    <input type="button" class="button" value="문의하기"> 
+    <input type="button" class="button" value="문의하기" onclick="location.href='FaQBoard.html'"> 
 </div>
 <div class="MyProfile">
     <div class="Img"><img src="https://raw.githubusercontent.com/PD-team2/SpringProject_Output/main/JaeHyunKim/IMG/Myrecord.png"></div>
     <div class="title"> 내 활동 기록</div> 
     <div class="expalin"> 작성하신 게시물을 조회할 수 있습니다.</div> 
-    <input type="button" class="button" value="활동기록보기"> 
+    <input type="button" class="button" value="활동기록보기">
+     
 </div>
     
 </div>
