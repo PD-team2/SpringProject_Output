@@ -1,0 +1,18 @@
+<header id="header">
+    <h1><a href="/">OO 대학교 온라인 투표</a></h1>
+    <nav class="links">
+        <ul>
+            <li><a href="/notice">공지사항</a></li>
+            <li><a href="/voteinfo">투표하기</a></li>
+            <li th:if="${sessionUser?.roleType?.name() == 'ADMIN'}"><a href="/userinfo">유저정보</a></li>
+            <li th:if="${sessionUser?.roleType?.name() == 'ADMIN'}"><a href="/candidatelist">투표등록</a></li>
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>

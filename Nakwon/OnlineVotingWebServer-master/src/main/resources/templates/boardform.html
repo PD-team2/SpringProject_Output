@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<!--
+	Future Imperfect by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>OO 대학교 온라인 투표 시스템</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/css/main.css" />
+		<link rel="stylesheet" href="/css/sub.css"/>
+	</head>
+	<body class="single is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+				<header th:include="html/header.html"></header>
+				<!-- Menu -->
+				<section th:include="html/menu.html"></section>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<article class="post">
+								<header>
+									<div class="title">
+										<h5><a href="javascript:history.back()" th:text="${board.boardType.getValue()}"></a></h5>
+									</div>
+									<div class="meta">
+										<a href="/login" class="button large fit" th:if="!${sessionUser}" style="font-size: 0.7em; margin-top: 10px">로그인 하기</a>
+										<div th:include="html/loginheader.html"></div>
+									</div>
+								</header>
+
+								<div class="container">
+									<input id="board_idx" type="hidden" th:value="${board?.idx}"/>
+									<input id="board_type" type="hidden" th:value="${board?.boardType}"/>
+									<table class="table">
+										<tr>
+											<th>제목</th>
+											<td><textarea id="board_title" name="board_title" th:text="${board?.title}" readonly/></td>
+										</tr>
+										<tr>
+											<th>내용</th>
+											<td><textarea id="board_content" name="board_content" style="height: 350px;" th:text="${board?.content}" readonly></textarea></td>
+										</tr>
+									</table>
+
+									<div class="bottom-button">
+										<div class="pull-left">
+											<button class="btn btn-primary" onclick="history.back()">목록으로</button>
+										</div>
+
+										<div class="pull-right">
+											<button th:if="${sessionUser.studentId == board.user.studentId}" type="button" class="btn btn-info" th:onclick="'window.location.href=\'/modify?idx=' + ${board.idx} + '\''">수정</button>
+											<button th:if="${sessionUser.studentId == board.user.studentId}" type="button" class="btn btn-danger" id="delete">삭제</button>
+										</div>
+									</div>
+								</div>
+							</article>
+					</div>
+
+				<!-- Footer -->
+					<section th:include="html/footer.html"></section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="/js/jquery.min.js"></script>
+			<script src="/js/browser.min.js"></script>
+			<script src="/js/breakpoints.min.js"></script>
+			<script src="/js/util.js"></script>
+			<script src="/js/main.js"></script>
+			<script src="/js/board.js"></script>
+
+	</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<!--
+	Future Imperfect by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>OO 대학교 온라인 투표 시스템</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/css/main.css" />
+		<link rel="stylesheet" href="/css/sub.css"/>
+	</head>
+	<body class="single is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+				<header th:include="html/header.html"></header>
+				<!-- Menu -->
+				<section th:include="html/menu.html"></section>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<article class="post" style="overflow: hidden;">
+								<header>
+									<div class="title">
+										<h2><a href="#">후보자 목록</a></h2>
+									</div>
+									<div class="meta">
+										<a href="/login" class="button large fit" th:if="!${sessionUser}" style="font-size: 0.7em; margin-top: 10px">로그인 하기</a>
+										<div th:include="html/loginheader.html"></div>
+									</div>
+								</header>
+
+								<table style="text-align: center; width: 60%; left:20%; position: relative;">
+									<thead>
+										<tr>
+											<td>번호</td>
+											<td>소속</td>
+											<td>팀 이름</td>
+											<td>정후보</td>
+											<td>부후보</td>
+											<td>부후보</td>
+										</tr>
+									</thead>
+									<tbody>
+									<tr th:each="candidate : ${candidateList}" style="font-size: 1.5em; margin: 20px 0 20px 0;">
+										<td th:text="${candidate.idx}"></td>
+										<td th:text="${candidate.department.getValue()}"></td>
+										<td th:text="${candidate.teamName}"></td>
+										<td th:text="${candidate.candidate1.name}"></td>
+										<td th:text="${candidate.candidate2.name}"></td>
+										<td th:if="${candidate.candidate3 != null}" th:text="${candidate.candidate3.name}"></td>
+									</tr>
+									</tbody>
+								</table>
+
+								<!-- Pagination -->
+								<nav aria-label="Page navigation" style="text-align: center; margin-left: 40px">
+									<ul class="pagination" style="margin-top: 9px" th:with="startNumber=${T(Math).floor(candidateList.number/10)}*10+1, endNumber=(${candidateList.totalPages} > ${startNumber}+9) ? ${startNumber}+9 : ${candidateList.totalPages}">
+										<li><a aria-label="Previous" href="/notice?page=1">&laquo;</a></li>
+										<li th:style="${candidateList.first} ? 'display:none'">
+											<a th:href="@{/candidatelist(page=${candidateList.number})}">&lsaquo;</a>
+										</li>
+
+										<li th:each="page :${#numbers.sequence(startNumber, endNumber)}" th:class="(${page} == ${candidateList.number}+1) ? 'active'">
+											<a th:href="@{/candidatelist(page=${page})}" th:text="${page}"><span class="sr-only"></span></a>
+										</li>
+
+										<li th:style="${candidateList.last} ? 'display:none'">
+											<a th:href="@{/candidatelist(page=${candidateList.number}+2)}">&rsaquo;</a>
+										</li>
+										<li><a aria-label="Next" th:href="@{/candidatelist(page=${candidateList.totalPages})}">&raquo;</a></li>
+									</ul>
+
+									<div style="float: right;">
+										<button onclick="location.href='/regcandidate'">후보등록</button>
+									</div>
+								</nav>
+
+							</article>
+					</div>
+
+				<!-- Footer -->
+				<section th:include="html/footer.html"></section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="/js/jquery.min.js"></script>
+			<script src="/js/browser.min.js"></script>
+			<script src="/js/breakpoints.min.js"></script>
+			<script src="/js/util.js"></script>
+			<script src="/js/main.js"></script>
+
+	</body>
+</html>

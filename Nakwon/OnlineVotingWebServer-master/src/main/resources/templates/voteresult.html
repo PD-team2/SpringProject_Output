@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<!--
+	Future Imperfect by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>OO 대학교 온라인 투표 시스템</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/css/main.css" />
+		<link rel="stylesheet" href="/css/sub.css"/>
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="https://www.gstatic.com/charts/loader.js"></script>
+	</head>
+	<body class="single is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+				<header th:include="html/header.html"></header>
+				<!-- Menu -->
+				<section th:include="html/menu.html"></section>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<article class="post">
+								<header>
+									<div class="title">
+										<h2 th:text="${department.getValue()} + ' 투표결과'"></h2>
+									</div>
+									<input id="department" type="hidden" th:value="${department}"/>
+									<div class="meta">
+										<a href="/login" class="button large fit" th:if="!${sessionUser}" style="font-size: 0.7em; margin-top: 10px">로그인 하기</a>
+										<div th:include="html/loginheader.html"></div>
+									</div>
+								</header>
+
+								<div>
+									<div style="width: 100%">
+										<div id="chart_div4" style="text-align: center"></div>
+									</div>
+								</div>
+							</article>
+					</div>
+
+				<!-- Footer -->
+				<section th:include="html/footer.html"></section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="/js/jquery.min.js"></script>
+			<script src="/js/browser.min.js"></script>
+			<script src="/js/breakpoints.min.js"></script>
+			<script src="/js/util.js"></script>
+			<script src="/js/main.js"></script>
+			<script src="/js/result.js"></script>
+
+	</body>
+</html>

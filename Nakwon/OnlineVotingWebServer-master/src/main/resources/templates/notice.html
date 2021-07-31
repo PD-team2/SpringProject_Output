@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<!--
+	Future Imperfect by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>OO 대학교 온라인 투표 시스템</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/css/main.css" />
+		<link rel="stylesheet" href="/css/sub.css"/>
+	</head>
+	<body class="single is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+				<header th:include="html/header.html"></header>
+				<!-- Menu -->
+				<section th:include="html/menu.html"></section>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<article class="post">
+								<header>
+									<div class="title">
+										<h5><a href="/notice">공지사항</a></h5>
+									</div>
+									<div class="meta">
+										<a href="/login" class="button large fit" th:if="!${sessionUser}" style="font-size: 0.7em; margin-top: 10px">로그인 하기</a>
+										<div th:include="html/loginheader.html"></div>
+									</div>
+								</header>
+								<table>
+									<thead>
+									<tr>
+										<th class="col-2">글 번호</th>
+										<th class="col-6">제목</th>
+										<th class="col-2">작성자</th>
+										<th class="col-2">작성 날짜</th>
+									</tr>
+									</thead>
+									<tbody>
+									<tr th:each="board : ${boardList}">
+										<td th:text="${board.idx}"></td>
+										<td><a th:href="'/board?idx='+${board.idx}" th:text="${board.title}"></a></td>
+										<td th:text="${board.user.name}"></td>
+										<td th:text="${#temporals.format(board.updatedDate,'yyyy-MM-dd HH:mm')}"></td>
+									</tr>
+									</tbody>
+								</table>
+
+								<!-- Pagination -->
+								<nav aria-label="Page navigation" style="text-align: center; margin-left: 40px">
+									<ul class="pagination" style="margin-top: 9px" th:with="startNumber=${T(Math).floor(boardList.number/10)}*10+1, endNumber=(${boardList.totalPages} > ${startNumber}+9) ? ${startNumber}+9 : ${boardList.totalPages}">
+										<li><a aria-label="Previous" href="/notice?page=1">&laquo;</a></li>
+										<li th:style="${boardList.first} ? 'display:none'">
+											<a th:href="@{/notice(page=${boardList.number})}">&lsaquo;</a>
+										</li>
+
+										<li th:each="page :${#numbers.sequence(startNumber, endNumber)}" th:class="(${page} == ${boardList.number}+1) ? 'active'">
+											<a th:href="@{/notice(page=${page})}" th:text="${page}"><span class="sr-only"></span></a>
+										</li>
+
+										<li th:style="${boardList.last} ? 'display:none'">
+											<a th:href="@{/notice(page=${boardList.number}+2)}">&rsaquo;</a>
+										</li>
+										<li><a aria-label="Next" th:href="@{/notice(page=${boardList.totalPages})}">&raquo;</a></li>
+									</ul>
+
+									<div style="float: right">
+										<button class="btn btn-primary" th:if="${sessionUser?.roleType?.name() == 'ADMIN'}" onclick="location.href='/post'">글 쓰기</button>
+									</div>
+								</nav>
+
+							</article>
+					</div>
+
+				<!-- Footer -->
+				<section th:include="html/footer.html"></section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="/js/jquery.min.js"></script>
+			<script src="/js/browser.min.js"></script>
+			<script src="/js/breakpoints.min.js"></script>
+			<script src="/js/util.js"></script>
+			<script src="/js/main.js"></script>
+
+	</body>
+</html>
