@@ -1,0 +1,60 @@
+@charset "UTF-8";
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+input[id="menuIcon"] {
+    display: none;
+}
+
+input[id="menuIcon"] + label {
+    display: block;
+    margin: 30px;
+    width: 60px;
+    height: 40px;
+    position: relative;
+    cursor: pointer;
+}
+
+input[id="menuIcon"] + label span {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    border-radius: 30px;
+    background: #000;
+    transition: all. 35s;
+}
+
+input[id="menuIcon"] + label span:nth-child(1) {
+    top:0;
+}
+
+input[id="menuIcon"] + label span:nth-child(2) {
+    top:50%;
+    transform: translateY(-50%);
+}
+
+input[id="menuIcon"] + label span:nth-child(3) {
+    bottom:0;
+}
+
+input[id="menuIcon"]:checked + label {
+    z-index: 2;
+}
+
+input[id="menuIcon"]:checked + label span {
+    background: #fff;
+}
+
+input[id="menuIcon"]:checked + label span:nth-child(1) {
+    top:50%;
+    transform: translateY(-50%) rotate(45deg);
+}
+
+input[id="menuIcon"]:checked + label span:nth-child(2) {
+   opacity: 0;
+}
+
+input[id="menuIcon"]:checked + label span:nth-child(3) {
+    bottom:50%;
+    transform: translateY(50%) rotate(-45deg);
+}

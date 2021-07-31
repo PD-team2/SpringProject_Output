@@ -1,0 +1,46 @@
+<!-- Menu -->
+<section id="menu">
+    <!-- Links -->
+    <section>
+        <ul class="links">
+            <li>
+                <a href="/notice">
+                    <h2>공 지 사 항</h2>
+                    <p>Notice Board</p>
+                </a>
+            </li>
+            <li>
+                <a href="/free">
+                    <h2>자 유 게 시 판</h2>
+                    <p>Free Board</p>
+                </a>
+            </li>
+            <li>
+                <a href="/voteinfo">
+                    <h2>투 표 하 기</h2>
+                    <p>Go to Vote</p>
+                </a>
+            </li>
+            <li>
+                <a href="/result">
+                    <h2>투 표 결 과</h2>
+                    <p>Counting Vote Result</p>
+                </a>
+            </li>
+            <li th:if="${sessionUser?.roleType?.name() == 'ADMIN'}">
+                <a href="/userinfo">
+                    <h2>유 저 정 보</h2>
+                    <p>User Info</p>
+                </a>
+            </li>
+        </ul>
+    </section>
+
+    <section>
+        <ul class="actions stacked">
+            <li th:if="!${sessionUser}"><a href="/login" class="button large fit">Log in</a></li>
+            <li th:if="${sessionUser}"><a href="/logout" class="button large fit">Log out</a></li>
+        </ul>
+    </section>
+
+</section>
